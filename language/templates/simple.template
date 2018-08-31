@@ -1,0 +1,6 @@
+x : float[10]
+w := DISTX
+b := DISTX
+observe(DIST(w, b)[10], x)
+posterior(w)
+posterior(b)

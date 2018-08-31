@@ -1,0 +1,458 @@
+{
+    "models": [
+        {
+            "name" : "normal",
+            "stan" : "normal",
+            "psiname" : "gauss",
+            "edward" : "ed.models.Normal",
+            "pyro" : "dist.Normal",
+            "venture": "normal",
+            "scipy" : "st.norm.mean({0}, {1})",
+            "args" : [
+                {
+                    "name" : "mu",
+                    "type" : "f"
+                },
+                {
+                    "name" : "sigma",
+                    "type" : "f+"
+                }
+            ],
+            "type" : "C",
+            "support" : "f"
+        },
+        {
+            "name" : "student_t",
+            "stan" : "student_t",
+            "venture":"student_t",
+            "args" : [
+                {
+                    "name" : "nu",
+                    "type" : "f+"
+                },
+                {
+                    "name" : "mu",
+                    "type" : "f"
+                },
+                {
+                    "name" : "sigma",
+                    "type" : "f+"
+                }
+            ],
+            "type" : "C",
+            "ig" : true,
+            "support" : "f"
+        },
+        {
+            "name" : "cauchy",
+            "name" : "cauchy",
+            "psiname" : "cauchy",
+            "edward" : "ed.models.Cauchy",
+            "pyro" : "dist.Cauchy",
+            "scipy" : "st.cauchy.mean({0}, {1})",
+            "args" : [
+                {
+                    "name" : "mu",
+                    "type" : "f"
+                },
+                {
+                    "name" : "sigma",
+                    "type" : "f+"
+                }
+            ],
+            "type" : "C",
+            "ig" : false,
+            "support" : "f"
+        },
+        {
+            "name" : "double_exponential",
+            "stan" : "double_exponential",
+            "venture": "laplace",
+            "edward" : "ed.models.Laplace",
+            "args" : [
+                {
+                    "name" : "mu",
+                    "type" : "f"
+                },
+                {
+                    "name" : "sigma",
+                    "type" : "f+"
+                }
+            ],
+           "support" : "f",
+            "type" : "C"
+        },
+        {
+            "name" : "logistic",
+            "stan" : "logistic",
+            "edward" : "ed.models.Logistic",
+            "args" : [
+                {
+                    "name" : "mu",
+                    "type" : "f"
+                },
+                {
+                    "name" : "sigma",
+                    "type" : "f+"
+                }
+            ],
+            "type" : "C",
+            "support" : "f"
+        },
+        {
+            "name" : "gumbel",
+            "stan" : "gumbel",
+            "args" : [
+                {
+                    "name" : "mu",
+                    "type" : "f"
+                },
+                {
+                    "name" : "beta",
+                    "type" : "f+"
+                }
+            ],
+
+            "type" : "C",
+            "ig" : false,
+             "support" : "f"
+        },
+        {
+            "name" : "lognormal",
+            "stan" : "lognormal",
+            "pyro" : "dist.LogNormal",
+            "scipy" : "st.lognorm.mean({0}, {1})",
+            "args" : [
+                {
+                    "name" : "mu",
+                    "type" : "f"
+                },
+                {
+                    "name" : "sigma",
+                    "type" : "f+"
+                }
+
+            ],
+            "type" : "C",
+            "ig" : false,
+             "support" : "f+"
+        },
+        {
+            "name" : "chi_square",
+            "stan" : "chi_square",
+            "psiname" : "chiSquared",
+            "edward" : "ed.models.Chi2",
+            "args" : [
+                {
+                    "name" : "nu",
+                    "type" : "f+"
+                }
+            ],
+            "ig" : false,
+            "type" : "C",
+            "support" : "f+"
+        },
+        {
+            "name" : "inv_chi_square",
+            "stan" : "inv_chi_square",
+            "args" : [
+                {
+                    "name" : "nu",
+                    "type" : "f+"
+                }
+            ],
+            "type" : "C",
+            "ig" : false,
+          "support" : "f+"
+        },
+        {
+            "name" : "exponential",
+            "stan" : "exponential",
+            "venture":"expon",
+            "psiname" : "exponential",
+            "edward" : "ed.models.Exponential",
+            "pyro" : "dist.Exponential",
+            "scipy" : "st.expon.mean({0})",
+            "args" : [
+                {
+                    "name" : "beta",
+                    "type" : "f+"
+                }
+            ],
+            "type" : "C",
+            "ig" : false,
+            "support" : "0f+"
+        },
+        {
+            "name" : "gamma",
+            "stan" : "gamma",
+            "psiname" : "gamma",
+             "edward" : "ed.models.Gamma",
+            "pyro": "dist.Gamma",
+            "venture":"gamma",
+            "scipy" : "st.gamma.mean({0}, {1})",
+            "args" : [
+                {
+                    "name" : "alpha",
+                    "type" : "f+"
+                },
+                {
+                    "name" : "beta",
+                    "type" : "f+"
+                }
+            ],
+            "type" : "C",
+           "support" : "f+"
+        },
+        {
+              "name" : "inv_gamma",
+              "stan" : "inv_gamma",
+             "edward" : "ed.models.InverseGamma",
+              "venture" : "inv_gamma",
+              "args" : [
+                  {
+                      "name" : "alpha",
+                      "type" : "f+"
+                  },
+                  {
+                      "name" : "beta",
+                      "type" : "f+"
+                  }
+              ],
+              "type" : "C",
+              "support" : "f+"
+        },
+      {
+          "name" : "weibull",
+          "stan" : "weibull",
+          "psinam" : "weibull",
+              "args" : [
+                  {
+                      "name" : "alpha",
+                      "type" : "f+"
+                  },
+                  {
+                      "name" : "sigma",
+                      "type" : "f+"
+                  }
+              ],
+              "type" : "C",
+              "support" : "0i+"
+      },
+      {
+        "name" : "beta",
+          "stan" : "beta",
+          "psiname" : "beta",
+          "edward" : "ed.models.Beta",
+          "pyro" : "dist.Beta",
+          "venture" : "beta",
+          "scipy" : "st.beta.mean({0}, {1})",
+              "args" : [
+                  {
+                      "name" : "alpha",
+                      "type" : "f+"
+                  },
+                  {
+                      "name" : "beta",
+                      "type" : "f+"
+                  }
+              ],
+              "type" : "C",
+              "support" : "(0,1)"
+      },
+      {
+        "name" : "uniform",
+           "stan" : "uniform",
+          "psinam" : "uniform",
+           "edward" : "ed.models.Uniform",
+          "pyro" : "dist.Uniform",
+          "venture":"uniform_continuous",
+          "scipy" : "st.uniform.mean({0}, {1})",
+              "args" : [
+                  {
+                      "name" : "alpha",
+                      "type" : "f"
+                  },
+                  {
+                      "name" : "beta",
+                      "type" : "f"
+                  }
+              ],
+              "ig" : true,
+              "type" : "C",
+              "support" : "[alpha, beta]"
+      },
+      {
+        "name" : "bernoulli_logit",
+           "stan" : "bernoulli_logit",
+          "edward" : "ed.models.BernoulliWithSigmoidProbs",
+          "psiname" : "flip",
+          "pyro" : "dist.Bernoulli",
+          "venture" : "bernoulli",
+          "scipy" : "st.bernoulli.mean({0})",
+              "args" : [
+                  {
+                      "name" : "theta",
+                      "type" : "p"
+                  }
+              ],
+              "type" : "D",
+              "support" : "b"
+      },
+      {
+        "name" : "binomial",
+           "stan" : "binomial",
+          "psiname" : "binomial",
+          "edward" : "ed.models.Binomial",
+          "venture" : "binomial",
+              "args" : [
+                  {
+                      "name" : "N",
+                      "type" : "i+"
+                  },
+                  {
+                      "name" : "theta",
+                      "type" : "p"
+                  }
+              ],
+              "ig": true,
+              "type" : "D",
+              "support": "[0,N]"
+      },
+      {
+        "name" : "beta_binomial",
+          "stan" : "beta_binomial",
+              "args" : [
+                  {
+                      "name" : "N",
+                      "type" : "i+"
+                  },
+                  {
+                      "name" : "alpha",
+                      "type" : "f+"
+                  },
+                  {
+                      "name" : "beta",
+                      "type" : "f+"
+                  }
+              ],
+              "type" : "D",
+              "support" : "[0,N]",
+          "ig" :true
+      },
+      {
+        "name" : "neg_binomial",
+          "stan" : "neg_binomial",
+          "edward" : "ed.models.NegativeBinomial",
+              "args" : [
+                  {
+                      "name" : "alpha",
+                      "type" : "f+"
+                  },
+                  {
+                      "name" : "beta",
+                      "type" : "f+"
+                  }
+              ],
+              "type" : "D",
+              "support" : "i+"
+      },
+      {
+        "name" : "poisson",
+           "stan" : "poisson",
+          "psiname" : "poisson",
+          "edward" : "ed.models.Poisson",
+          "pyro": "dist.Poisson",
+           "venture" : "poisson",
+          "scipy" : "st.poisson.mean({0})",
+              "args" : [
+                  {
+                      "name" : "lambda",
+                      "type" : "f+"
+                  }
+              ],
+              "type" : "D",
+              "support" : "i+"
+      }
+    ],
+    "inferences" : [
+        {
+            "name" : "ed.HMC",
+            "supported_posterior" : "ed.models.Empirical",
+            "datasets": 2,
+            "ig" : false,
+            "lr": 0.05
+        },
+        {
+            "name" : "ed.MAP",
+            "supported_posterior": "ed.models.PointMass",
+            "datasets" : 1,
+            "ig" : true
+        },
+        {
+            "name" : "ed.KLqp",
+            "supported_posterior": "ed.models.Normal",
+            "ig" : true,
+            "supported_models" : ["ed.models.Normal", "ed.models.Exponential", "ed.models.InverseGamma"]
+        },
+        {
+            "name" : "ed.KLpq",
+            "supported_posterior": "ed.models.Normal",
+            "ig" : true,
+            "supported_models" : ["ed.models.Normal", "ed.models.Exponential", "ed.models.InverseGamma"]
+        },
+        {
+            "name" : "ed.Gibbs",
+            "supported_posterior" : "ed.models.Empirical",
+            "ig" : true,
+            "supported_models" : ["ed.models.Normal"]
+        },
+        {
+            "name" : "ed.MetropolisHastings",
+            "supported_posterior" : "ed.models.Empirical",
+            "ig" : true,
+            "has_proposal" : true
+        },
+        {
+            "name" : "ed.SGHMC",
+            "supported_posterior" : "ed.models.Empirical",
+            "ig" : false,
+            "has_proposal" : false,
+            "lr": "0.01"
+        },
+        {
+            "name" : "ed.SGLD",
+            "supported_posterior" : "ed.models.Empirical",
+            "ig" : false,
+            "has_proposal" : false,
+            "lr" : 0.05
+        }
+
+    ],
+    "util_functions" :[
+        {
+            "name" : "tf.reciprocal"
+        },
+        {
+            "name" : "tf.sin"
+        },
+        {
+            "name" : "tf.cos"
+        },
+        {
+            "name" : "tf.sigmoid"
+        },
+        {
+            "name" : "tf.tan"
+        },
+        {
+            "name" : "tf.erf"
+        },
+        {
+            "name" : "tf.exp"
+        },
+        {
+            "name" : "tf.lgamma"
+        }
+    ]
+}

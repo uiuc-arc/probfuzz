@@ -1,0 +1,105 @@
+{
+  "max_threads": 1,
+  "output_dir": "output",
+  "structured" : true,
+  "current_template": "lr",
+  "runConfigurations": [
+    {
+      "tool": "stan",
+      "enabled": true,
+      "algorithm": "nuts",
+      "timeout": "5m",
+      "python" : "python"
+    },
+    {
+      "tool": "edward",
+      "enabled": true,
+      "algorithm": "all",
+      "timeout": "5m",
+      "python" : "python"
+    },
+    {
+      "tool": "pyro",
+      "enabled": true,
+      "algorithm": "all",
+      "timeout": "5m",
+      "python" : "python"
+    }
+  ],
+  "templates": {
+    "simple" : "language/templates/simple.template",
+    "lr": "language/templates/linearregression.template",
+    "mlr": "language/templates/mlr.template",
+    "lrc": "language/templates/cond.template"
+  },
+  "edward" :{
+    "inferences" : [
+        {
+            "name": "ed.HMC",
+            "supported_posterior": "ed.models.Empirical",
+            "datasets": 2,
+            "ig": false,
+            "lr": 0.05,
+            "thin": true,
+            "mean": true,
+            "ig": true
+        },
+        {
+            "name": "ed.MAP",
+            "supported_posterior": "ed.models.PointMass",
+            "datasets": 1,
+            "ig": false
+        },
+        {
+            "name": "ed.KLqp",
+            "supported_posterior": "ed.models.Normal",
+            "ig": false,
+            "supported_models": ["ed.models.Normal", "ed.models.Exponential", "ed.models.InverseGamma"]
+        },
+        {
+            "name": "ed.KLpq",
+            "supported_posterior": "ed.models.Normal",
+            "ig": false,
+            "supported_models": ["ed.models.Normal", "ed.models.Exponential", "ed.models.InverseGamma"]
+        },        
+        {
+            "name": "ed.SGHMC",
+            "supported_posterior": "ed.models.Empirical",
+            "ig": false,
+            "has_proposal": false,
+            "lr": 0.01,
+            "thin": true,
+            "mean" : true
+        },
+        {
+            "name": "ed.SGLD",
+            "supported_posterior": "ed.models.Empirical",
+            "ig": false,
+            "has_proposal": false,
+            "lr": 0.05,
+            "thin": true,
+            "mean": true
+        }
+    ]
+  },
+  "pyro" : {
+      "optimizers" : [
+          {
+	      "name" : "Adam",
+	      "params" : [
+		  {
+		      "name" : "lr",
+		      "type" : "(0,1)",
+		      "special" : false
+		  },
+		  {
+		      "name" : "betas",
+		      "type" : "(0,1)",
+		      "size" : 2,
+		      "special" : false
+		  }
+	      ]
+	  }
+      ]
+  }
+}

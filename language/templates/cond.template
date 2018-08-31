@@ -1,0 +1,17 @@
+x : float[10]
+weight : float
+bias : float
+y : weight*x + bias
+w := DISTX
+b := DISTX
+p := DISTX
+cond = bernoulli(CONST)
+if (cond)
+then
+observe(DIST(w*x + b, p), y)
+else
+observe(DIST(5.0*x + b, p), y)
+
+posterior(w)
+posterior(b)
+posterior(p)

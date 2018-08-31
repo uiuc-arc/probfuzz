@@ -1,0 +1,11 @@
+x : float[1]
+weight : float
+bias : float
+y : weight*x + bias
+w := DIST(CONST, CONST)
+b := DIST(CONST, CONST)
+p := DIST(CONST, CONST)
+observe(DIST(w*x + b, p), y)
+posterior(w)
+posterior(b)
+posterior(p)

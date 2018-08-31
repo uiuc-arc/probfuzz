@@ -1,0 +1,11 @@
+x : float[10, 10]
+weight: float[10]
+bias: float
+y : weight*x + bias
+w := DISTX[10]
+b := DISTX
+p := DISTX
+observe(DIST(x*w + b, p), y)
+posterior(w)
+posterior(b)
+posterior(p)
