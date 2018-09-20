@@ -142,12 +142,30 @@ def generate_programs_from_template():
         queues[i % max_thread].put((i, file_dir_name))
 
     print("Output directory : " + dirname)
-
+    threads = []
     for i in range(0, max_thread):
         print("Starting thread .. " + str(i + 1))
         thread = InferenceEngineRunner(i, queues[i], config['runConfigurations'])
         thread.start()
+        threads.append(thread)
+
+    for i in range(0 , max_thread):
+        threads[i].join()
+
+    metric = config['metric']
+    printSummary(dirname, metric)
+
+def printSummary(dir, metric):
+    print("Printing summary")
+    process = sp.Popen("./summary.sh  -m {0} -d {1} | column -t -s,".format(metric, dir), stdout=sp.PIPE, stderr=sp.PIPE, shell=True)
+    dataout, dataerr = process.communicate()
+
+    with open(dir + '/summary.csv', 'w') as summaryfile:
+        summaryfile.write(dataerr)
+        summaryfile.write(dataout)
+    print("Summary written in summary.csv")
 
 
 if __name__ == "__main__":
     generate_programs_from_template()
+

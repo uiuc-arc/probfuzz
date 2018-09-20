@@ -121,10 +121,10 @@ class Pyro(Backend):
             argslist+="Variable("+str(arg)+"*torch.ones(("+dims+"))),"
 
         # hack for sample
-        if name == 'p':
-            self.model += "{0} = pyro.sample('{1}', {2}({3}))\n".format(name, name, prior['prior']['pyro'], argslist[:-1])
-        else:
-            self.model += "{0} = {1}({2})\n".format(name, prior['prior']['pyro'], argslist[:-1])
+        #if name == 'p':
+        #    self.model += "{0} = pyro.sample('{1}', {2}({3}))\n".format(name, name, prior['prior']['pyro'], argslist[:-1])
+        #else:
+        self.model += "{0} = {1}({2})\n".format(name, prior['prior']['pyro'], argslist[:-1])
 
         # update guide
         # get posterior dist with matching support
@@ -190,7 +190,7 @@ class Pyro(Backend):
             self.model += "pyro.sample('obs', " + model[1]["pyro"] + "(prediction), obs=" + name + \
                               ".squeeze(-1))\n"
         else:
-            self.model += "pyro.sample('obs', " + model[1]["pyro"] + "(prediction, " + self.visit(ctx.distexpr().params().param(1)) + "*Variable(torch.ones("+name+".squeeze(-1).size()))), obs=" + name + ".squeeze(-1))\n"
+            self.model += "pyro.sample('obs', " + model[1]["pyro"] + "(prediction, " + self.visit(ctx.distexpr().params().param(1)) + ".sample()*Variable(torch.ones("+name+".squeeze(-1).size()))), obs=" + name + ".squeeze(-1))\n"
         return ""
 
     def visitCondmodel(self, ctx):
@@ -239,7 +239,7 @@ class Pyro(Backend):
         self.model += "prediction=" + lifted_reg_name + "(" + self.forward_ref_string[:-1] + ").squeeze(-1)\n"
 
         self.model += "pyro.sample('obs', " + model[1]["pyro"] + "(prediction, " + self.visit(
-            truebranch.distexpr().params().param(1)) + "*Variable(torch.ones(" + name + ".squeeze(-1).size()))), obs=" + name + \
+            truebranch.distexpr().params().param(1)) + ".sample()*Variable(torch.ones(" + name + ".squeeze(-1).size()))), obs=" + name + \
                       ".squeeze(-1))\n"
 
         return ""
