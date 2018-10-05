@@ -120,10 +120,6 @@ class Pyro(Backend):
         for arg in prior['args']:
             argslist+="Variable("+str(arg)+"*torch.ones(("+dims+"))),"
 
-        # hack for sample
-        #if name == 'p':
-        #    self.model += "{0} = pyro.sample('{1}', {2}({3}))\n".format(name, name, prior['prior']['pyro'], argslist[:-1])
-        #else:
         self.model += "{0} = {1}({2})\n".format(name, prior['prior']['pyro'], argslist[:-1])
 
         # update guide
