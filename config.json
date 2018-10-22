@@ -2,8 +2,8 @@
   "max_threads": 1,
   "output_dir": "output",
   "structured" : true,
-  "current_template": "lrc",
-  "metric" : "lrc_smape",
+  "current_template": "lr",
+  "metric" : "lr_smape",
   "runConfigurations": [
     {
       "tool": "stan",
